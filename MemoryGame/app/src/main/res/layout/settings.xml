@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+       
+
+        <TextView
+            android:layout_width="250dip"
+            android:textSize="8pt"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_height="40dip"
+            android:padding="5dip"
+            android:text="@string/prefs" />
+     
+
+        <CheckBox
+            android:id="@+id/ch_sound_correct"
+            android:checked="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dip" 
+            android:textSize="8pt"
+            android:textColor="#ffffff"
+            android:text="@string/sound_correct" />
+
+        <CheckBox
+            android:id="@+id/ch_sound_incorrect"
+            android:checked="true"
+            android:layout_width="match_parent"
+            android:layout_height="40dip" 
+            android:textSize="8pt"
+            android:textColor="#ffffff"
+            android:text="@string/sound_incorrect" /> 
+            
+        <Button android:id="@+id/save_prefs"
+			android:layout_width="fill_parent" 
+			android:layout_height="60dip"
+			android:text="@string/save_prefs" />
+	        
+        <Button android:id="@+id/save_game"
+			android:layout_width="fill_parent" 
+			android:layout_height="60dip"
+			android:text="@string/save_game" />
+
+</LinearLayout>

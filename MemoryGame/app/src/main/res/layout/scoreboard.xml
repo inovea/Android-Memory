@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+  <TextView
+      android:padding="15dip"
+        android:id="@+id/scoreboard_text"
+        android:textColor="#ffffff"
+        android:textSize="10pt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/scoreboard_text" />
+   <Button android:id="@+id/play_again"
+		android:layout_width="fill_parent" 
+		android:layout_height="60dip"
+		
+		android:text="@string/play_again" />
+   
+    
+</LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Welcome to the Memory Game!</string>
+    <string name="app_name">Memory Game</string>
+    <string name="menu_new_game">new game</string>
+    <string name="end_game">exit</string>
+    <string name="play_move">play</string>
+    <string name="play_again">new game</string>
+    <string name="scoreboard_text">You finished the game in %d tries!</string>
+    <string name="feedback">0 / 0</string>
+    <string name="menu_prefs">settings</string>
+    <string name="prefs">SETTINGS</string>
+    <string name="sound_correct">make sound when correct</string>
+    <string name="sound_incorrect">make sound when incorrect</string>
+    <string name="save_prefs">save and back to menu</string>
+    <string name="save_game">save and back to game</string>
+    <string name="menu">menu</string>
+	<string name="action_settings">action_settings</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+	
+</resources>

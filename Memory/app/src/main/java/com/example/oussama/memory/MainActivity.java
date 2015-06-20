@@ -17,6 +17,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -134,6 +136,25 @@ public class MainActivity extends ActionBarActivity {
             }
 
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.addSubMenu(0, 0, 1, "4 x 4");
+        menu.addSubMenu(0, 0, 1, "4 x 5");
+        return true;
+        //return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_new_game:
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void newGame(int c, int r) {
