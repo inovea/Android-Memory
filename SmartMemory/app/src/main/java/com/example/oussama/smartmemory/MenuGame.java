@@ -32,7 +32,8 @@ public class MenuGame extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) activity).play(getView());
+                //((MainActivity) activity).play(getView());
+                ((MainActivity) activity).startFragment(PlayGame.class, null);
             }
         });
         activity = getActivity();

@@ -15,7 +15,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            // Recuperer le FragmentManager
+            /*// Recuperer le FragmentManager
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             // Trouver si le fragment que nous souhaitons afficher appartient a la backstack
@@ -27,22 +27,9 @@ public class MainActivity extends ActionBarActivity {
             // Ajoutez le fragment a son layout et effectuez le commit
             ft.add(R.id.item_list_container, firstFragment);
             ft.addToBackStack(null);
-            ft.commit();
+            ft.commit();*/
+            startFragment(MenuGame.class, null);
         }
-    }
-
-    public void play(View view){
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        PlayGame playFragment = new PlayGame();
-        ft.replace(R.id.item_list_container, playFragment);
-        ft.addToBackStack(null);
-        ft.commit();
-    }
-
-    public void startFragment(Class fragment, Bundle bundle){
-//        Fragment newFragment = fragment.newInstance();
-
     }
 
     @Override
@@ -64,5 +51,34 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startFragment(Class clazz, Bundle bundle){
+        try {
+            Fragment fragment = (Fragment) clazz.newInstance();
+            if(bundle != null){
+                fragment.setArguments(bundle);
+            }
+
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            ft.replace(R.id.item_list_container, fragment);
+            ft.addToBackStack(null);
+            ft.commit();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() > 1){
+            getSupportFragmentManager().popBackStack();
+        } else {
+            this.finish();
+        }
     }
 }

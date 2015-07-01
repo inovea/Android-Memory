@@ -9,6 +9,11 @@
     <string name="timer">00 : 00</string>
     <string name="score">SCORE</string>
     <string name="scoreNb">436</string>
+    <string name="enterUsername">Enter Username here</string>
+    <string name="register">Register</string>
+    <string name="skip">Skip</string>
+    <string name="scoreRegistered">Score registered</string>
+
 
 
 <!-- TODO: Remove or change this placeholder text -->

@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 public class PlayGame extends Fragment {
@@ -32,7 +30,7 @@ public class PlayGame extends Fragment {
     private TextView tFeedback;
     private Boolean b_snd_inc, b_snd_cor, b_new_game;
 
-    //TIMER 2
+    //TIMER
     private TextView textTimer;
     private long startTime = 0L;
     private Handler myHandler;
@@ -245,6 +243,13 @@ public class PlayGame extends Fragment {
         if (correctcounter > 7) {
             timeSwap += timeInMillies;
             myHandler.removeCallbacks(updateTimerMethod);
+
+            RegisterScore dialog = new RegisterScore();
+            Bundle bundle = new Bundle();
+            bundle.putInt("mc_counter", mc_counter);
+            bundle.putLong("time", finalTime);
+            dialog.setArguments(bundle);
+            dialog.show(getFragmentManager(), "Register Score");
 //            Intent iSc = new Intent(getApplicationContext(), Scoreboard.class);
 //            iSc.putExtra("com.gertrietveld.memorygame.SCORE", mc_counter);
 //            iSc.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

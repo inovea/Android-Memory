@@ -1,10 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.example.oussama.smartmemory.RegisterScore"
-    android:background="@drawable/winner">
+    android:background="#FFFFBB33"
+    android:orientation="vertical">
 
 
     <TextView
@@ -15,8 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
-        android:textColor="#fff"
-        android:id="@+id/textView2"
+        android:id="@+id/textViewScoreTitle"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal" />
 
@@ -26,8 +23,19 @@
         android:text="@string/scoreNb"
         android:textSize="40dp"
         android:layout_centerHorizontal="true"
-        android:textColor="#fff"
-        android:id="@+id/textView3"
+        android:id="@+id/textViewScore"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal" />
+
+    <EditText
+    android:id="@+id/username"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_gravity="center"
+    android:hint="@string/enterUsername" />
+
 </LinearLayout>
