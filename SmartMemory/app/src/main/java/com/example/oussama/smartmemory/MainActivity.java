@@ -34,19 +34,19 @@ public class MainActivity extends ActionBarActivity {
     public void play(View view){
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        PlayGame playFragment = null;
-        //PlayGame playFragment = (PlayGame) fm.findFragmentById(R.id.item_list_container);
-        if (null == fm.findFragmentById(R.id.item_list_container)) {
-            playFragment = new PlayGame();
-        }
-        ft.add(R.id.item_list_container, playFragment).commit();
+        PlayGame playFragment = new PlayGame();
+        ft.replace(R.id.item_list_container, playFragment);
         ft.addToBackStack(null);
         ft.commit();
     }
 
+    public void startFragment(Class fragment, Bundle bundle){
+//        Fragment newFragment = fragment.newInstance();
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }

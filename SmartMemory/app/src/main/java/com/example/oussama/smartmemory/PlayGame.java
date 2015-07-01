@@ -3,6 +3,8 @@ package com.example.oussama.smartmemory;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class PlayGame extends Fragment {
@@ -27,6 +31,14 @@ public class PlayGame extends Fragment {
     private int correctcounter = 0;
     private TextView tFeedback;
     private Boolean b_snd_inc, b_snd_cor, b_new_game;
+
+    //TIMER 2
+    private TextView textTimer;
+    private long startTime = 0L;
+    private Handler myHandler;
+    long timeInMillies = 0L;
+    long timeSwap = 0L;
+    long finalTime = 0L;
 
     public static boolean DEBUG = false;
 
@@ -49,17 +61,35 @@ public class PlayGame extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initGame();
+        launchTimer();
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void launchTimer(){
+        textTimer = (TextView) getView().findViewById(R.id.mc_time);
+        startTime = SystemClock.uptimeMillis();
+        myHandler = new Handler();
+        myHandler.postDelayed(updateTimerMethod, 0);
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
+    private Runnable updateTimerMethod = new Runnable() {
+        @Override
+        public void run() {
+            timeInMillies = SystemClock.uptimeMillis() - startTime;
+            finalTime = timeSwap + timeInMillies;
+
+            int seconds = (int) (finalTime / 1000);
+            int minutes = seconds / 60;
+            seconds = seconds % 60;
+//            int milliseconds = (int) (finalTime % 1000);
+
+            textTimer.setText("" + minutes + ":"
+                    + String.format("%02d", seconds) /*+ ":"
+                    + String.format("%03d", milliseconds)*/);
+
+            myHandler.postDelayed(this, 0);
+        }
+    };
+
 
     private void initGame() {
         SharedPreferences settings = getActivity().getSharedPreferences("memoryPrefs", 0);
@@ -77,15 +107,6 @@ public class PlayGame extends Fragment {
             correctcounter = 0;
 
             tFeedback = (TextView) getView().findViewById(R.id.mc_feedback);
-
-            // setup button listeners
-            Button startButton = (Button) getView().findViewById(R.id.game_menu);
-            startButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View view) {
-//                    startMenu();
-                }
-            });
-
 
             // fill arrays with resources
             id_mc[0] = R.id.mc0;
@@ -153,11 +174,91 @@ public class PlayGame extends Fragment {
                                 i = n;
                         }
 
-//                        doClickAction(view, i);
+                        doClickAction(view, i);
 
                     }
                 });
             }
         }
+
+
+    }
+
+    private void doClickAction(View v, int i) {
+
+        v.setBackgroundResource(img_mc[i][1]);
+        mc_isfirst = !mc_isfirst;
+
+        // disable all buttons
+        for (Button b : myMcs) {
+            b.setEnabled(false);
+        }
+
+        if (mc_isfirst) {
+            // turning the first card
+
+            firstid = i;
+            // re enable all except this one
+            for (Button b : myMcs) {
+                if (b.getId() != firstid) {
+                    b.setEnabled(true);
+                }
+            }
+
+        } else {
+            // turning the second card
+            secondid = i;
+            doPlayMove();
+        }
+
+    }
+
+    private void doPlayMove() {
+
+        mc_counter++;
+
+        if (img_mc[firstid][1] - img_mc[secondid][1] == 0) {
+            // correct
+            waiting(200);
+            myMcs[firstid].setVisibility(View.INVISIBLE);
+            myMcs[secondid].setVisibility(View.INVISIBLE);
+            correctcounter++;
+
+        } else {
+            // incorrect
+            waiting(400);
+        }
+
+        // re-enable and turn cards back
+        for (Button b : myMcs) {
+            if (b.getVisibility() != View.INVISIBLE) {
+                b.setEnabled(true);
+                b.setBackgroundResource(R.drawable.memory_back);
+                for (int i = 0; i < 16; i++) {
+                    myMcs[i].setBackgroundResource(img_mc[i][0]);
+                }
+            }
+        }
+
+        tFeedback.setText(String.format("%d/%d", correctcounter, mc_counter));
+
+        if (correctcounter > 7) {
+            timeSwap += timeInMillies;
+            myHandler.removeCallbacks(updateTimerMethod);
+//            Intent iSc = new Intent(getApplicationContext(), Scoreboard.class);
+//            iSc.putExtra("com.gertrietveld.memorygame.SCORE", mc_counter);
+//            iSc.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//            startActivity(iSc);
+
+        }
+
+    }
+
+    public static void waiting(int n) {
+        long t0, t1;
+        t0 = System.currentTimeMillis();
+        do {
+            t1 = System.currentTimeMillis();
+        } while ((t1 - t0) < (n));
     }
 }

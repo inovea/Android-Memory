@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">SmartMemory</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="title">MEMORY CRAFT</string>
     <string name="play">Play</string>
     <string name="stat">Statistics</string>
     <string name="action_settings">Settings</string>
     <string name="menu">Menu</string>
     <string name="feedback">0 / 0</string>
+    <string name="timer">00 : 00</string>
+    <string name="score">SCORE</string>
+    <string name="scoreNb">436</string>
+
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

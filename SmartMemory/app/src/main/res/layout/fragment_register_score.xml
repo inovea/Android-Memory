@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.oussama.smartmemory.RegisterScore"
+    android:background="@drawable/winner">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/score"
+        android:textSize="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        android:textColor="#fff"
+        android:id="@+id/textView2"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/scoreNb"
+        android:textSize="40dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#fff"
+        android:id="@+id/textView3"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal" />
+</LinearLayout>
