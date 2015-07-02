@@ -240,7 +240,8 @@ public class PlayGame extends Fragment {
 
         tFeedback.setText(String.format("%d/%d", correctcounter, mc_counter));
 
-        if (correctcounter > 7) {
+        if (mc_counter > 0) {
+//        if (correctcounter > 7) {
             timeSwap += timeInMillies;
             myHandler.removeCallbacks(updateTimerMethod);
 

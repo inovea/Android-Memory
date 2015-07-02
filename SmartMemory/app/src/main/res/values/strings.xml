@@ -13,6 +13,7 @@
     <string name="register">Register</string>
     <string name="skip">Skip</string>
     <string name="scoreRegistered">Score registered</string>
+    <string name="scoreNonRegistered">Impossible to save score</string>
 
 
 

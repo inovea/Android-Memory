@@ -10,10 +10,13 @@ import android.view.View;
 
 public class MainActivity extends ActionBarActivity {
 
+    SQLDataBaseHandler db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = new SQLDataBaseHandler(this);
         if (savedInstanceState == null) {
             /*// Recuperer le FragmentManager
             FragmentManager fm = getSupportFragmentManager();
@@ -80,5 +83,9 @@ public class MainActivity extends ActionBarActivity {
         } else {
             this.finish();
         }
+    }
+
+    public SQLDataBaseHandler getDb() {
+        return db;
     }
 }

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
@@ -16,7 +17,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.List;
 
 
 /**
@@ -41,8 +47,14 @@ public class RegisterScore extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 username = (EditText) v.findViewById(R.id.username);
                 player.setUsername(username.getText().toString());
-                savePlayer();
-                Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.scoreRegistered), Toast.LENGTH_SHORT).show();
+                try {
+                    savePlayer();
+                    Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.scoreRegistered), Toast.LENGTH_SHORT).show();
+                    ((MainActivity)getActivity()).startFragment(PlayGame.class, null);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.scoreNonRegistered), Toast.LENGTH_SHORT).show();
+                }
             }
         }).setNegativeButton(getActivity().getResources().getString(R.string.skip), new DialogInterface.OnClickListener() {
             @Override
@@ -66,12 +78,7 @@ public class RegisterScore extends DialogFragment {
         tvScore.setText(String.valueOf(score));
     }
 
-    public void savePlayer(){
-        /*SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        SharedPreferences.Editor prefsEditor = prefs.edit();
-        Gson gson = new Gson();
-        String json = gson.toJson(player);
-        prefsEditor.putString("Player", json);
-        prefsEditor.commit();*/
+    public void savePlayer() throws IOException {
+        ((MainActivity)getActivity()).getDb().addOne(player);
     }
 }

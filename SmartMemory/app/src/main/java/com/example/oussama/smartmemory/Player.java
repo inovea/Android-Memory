@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Oussama on 01/07/2015.
  */
-public class Player implements Serializable {
+public class Player {
 
     String username;
     int time;
