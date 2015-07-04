@@ -1,4 +1,4 @@
-package com.example.oussama.smartmemory;
+package com.example.oussama.smartmemory.model;
 
 import android.content.ContentValues;
 import android.content.Context;

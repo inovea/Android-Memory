@@ -14,9 +14,8 @@
     <string name="skip">Skip</string>
     <string name="scoreRegistered">Score registered</string>
     <string name="scoreNonRegistered">Impossible to save score</string>
-
-
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delete_player_title">Delete Player</string>
+    <string name="delete_player_text">Would you delete this player</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
 </resources>

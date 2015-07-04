@@ -1,14 +1,11 @@
-package com.example.oussama.smartmemory;
+package com.example.oussama.smartmemory.fragment;
 
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
@@ -18,11 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import java.io.File;
-import java.io.FileOutputStream;
+import com.example.oussama.smartmemory.MainActivity;
+import com.example.oussama.smartmemory.model.Player;
+import com.example.oussama.smartmemory.R;
+
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.List;
 
 
 /**

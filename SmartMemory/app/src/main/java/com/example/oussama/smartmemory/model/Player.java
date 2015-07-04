@@ -1,4 +1,4 @@
-package com.example.oussama.smartmemory;
+package com.example.oussama.smartmemory.model;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.example.oussama.smartmemory;
+package com.example.oussama.smartmemory.fragment;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.oussama.smartmemory.MainActivity;
+import com.example.oussama.smartmemory.R;
 
 
 /**
@@ -35,11 +38,16 @@ public class MenuGame extends Fragment {
                 ((MainActivity) activity).startFragment(PlayGame.class, null);
             }
         });
+
+        Button stat = (Button) getView().findViewById(R.id.buttonStat);
+        stat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) getActivity()).startFragment(PlayerStatistiques.class, null);
+            }
+        });
         activity = getActivity();
     }
 
 
-    public void statistiques(View view){
-
-    }
 }

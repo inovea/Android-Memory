@@ -1,6 +1,5 @@
-package com.example.oussama.smartmemory;
+package com.example.oussama.smartmemory.fragment;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.example.oussama.smartmemory.R;
 
 import java.util.Arrays;
 import java.util.Collections;
