@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">SmartMemory</string>
+    <string name="title">MEMORY CRAFT</string>
+    <string name="play">Jouer</string>
+    <string name="stat">Statistiques</string>
+    <string name="action_settings">Parametres</string>
+    <string name="menu">Menu</string>
+    <string name="feedback">0 / 0</string>
+    <string name="timer">00 : 00</string>
+    <string name="score">SCORE</string>
+    <string name="scoreNb">436</string>
+    <string name="enterUsername">Entrer votre login ici</string>
+    <string name="register">Enregistrer</string>
+    <string name="skip">Passer</string>
+    <string name="scoreRegistered">Score enregistre</string>
+    <string name="scoreNonRegistered">Impossible d\'enregistrer le score</string>
+    <string name="delete_player_title">Suppression joueur</string>
+    <string name="delete_player_text">Voulez-vous supprimer ce joueur</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+</resources>

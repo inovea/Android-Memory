@@ -42,7 +42,6 @@ public class PlayGame extends Fragment {
     public static boolean DEBUG = false;
 
     public PlayGame() {
-        // Required empty public constructor
     }
 
     @Override
@@ -82,8 +81,9 @@ public class PlayGame extends Fragment {
 //            int milliseconds = (int) (finalTime % 1000);
 
             textTimer.setText("" + minutes + ":"
-                    + String.format("%02d", seconds) /*+ ":"
-                    + String.format("%03d", milliseconds)*/);
+                    + String.format("%02d", seconds)
+//                    + ":" + String.format("%03d", milliseconds)
+            );
 
             myHandler.postDelayed(this, 0);
         }
@@ -93,11 +93,8 @@ public class PlayGame extends Fragment {
     private void initGame() {
         SharedPreferences settings = getActivity().getSharedPreferences("memoryPrefs", 0);
         b_new_game = settings.getBoolean("new_game", true);
-//        b_snd_cor = settings.getBoolean("play_sound_when_correct", false);
-//        b_snd_inc = settings.getBoolean("play_sound_when_incorrect", false);
 
         if (b_new_game) {
-            //setContentView(R.layout.game);
 
             mc_counter = 0;
             firstid = 0;
@@ -241,8 +238,7 @@ public class PlayGame extends Fragment {
 
         tFeedback.setText(String.format("%d/%d", correctcounter, mc_counter));
 
-        if (mc_counter > 0) {
-//        if (correctcounter > 7) {
+        if (correctcounter > 7) {
             timeSwap += timeInMillies;
             myHandler.removeCallbacks(updateTimerMethod);
 
@@ -252,10 +248,6 @@ public class PlayGame extends Fragment {
             bundle.putLong("time", finalTime);
             dialog.setArguments(bundle);
             dialog.show(getFragmentManager(), "Register Score");
-//            Intent iSc = new Intent(getApplicationContext(), Scoreboard.class);
-//            iSc.putExtra("com.gertrietveld.memorygame.SCORE", mc_counter);
-//            iSc.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//            startActivity(iSc);
 
         }
 

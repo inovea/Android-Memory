@@ -20,19 +20,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         db = new SQLDataBaseHandler(this);
         if (savedInstanceState == null) {
-            /*// Recuperer le FragmentManager
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction ft = fm.beginTransaction();
-            // Trouver si le fragment que nous souhaitons afficher appartient a la backstack
-            MenuGame firstFragment = (MenuGame) fm.findFragmentById(R.id.item_list_container);
-            if (null == firstFragment) {
-                // Creez le fragment
-                firstFragment = new MenuGame();
-            }
-            // Ajoutez le fragment a son layout et effectuez le commit
-            ft.add(R.id.item_list_container, firstFragment);
-            ft.addToBackStack(null);
-            ft.commit();*/
             startFragment(MenuGame.class, null);
         }
     }
@@ -45,12 +32,8 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

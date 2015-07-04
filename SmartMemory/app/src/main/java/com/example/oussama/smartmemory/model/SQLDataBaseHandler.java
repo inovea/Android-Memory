@@ -93,7 +93,7 @@ public class SQLDataBaseHandler extends SQLiteOpenHelper {
     public List<Player> showAll() {
 
         List<Player> players = new LinkedList<>();
-        String query = "SELECT  * FROM " + TABLE_NAME;
+        String query = "SELECT  * FROM " + TABLE_NAME + " ORDER BY " + KEY_TIME + " DESC";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Player player= null;
