@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.oussama.smartmemory.fragment.MenuGame;
+import com.example.oussama.smartmemory.fragment.SettingGame;
 import com.example.oussama.smartmemory.model.SQLDataBaseHandler;
 
 
@@ -35,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            return true;
+            startFragment(SettingGame.class, null);
         }
 
         return super.onOptionsItemSelected(item);

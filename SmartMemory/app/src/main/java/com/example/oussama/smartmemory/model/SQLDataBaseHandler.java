@@ -68,32 +68,10 @@ public class SQLDataBaseHandler extends SQLiteOpenHelper {
 
     }
 
-    public Player showOne(String name) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME, // a. table
-                COLONNES, // b. column names
-                " name = ?", // c. selections
-                new String[] { name }, // d. selections args
-                null, // e. group by
-                null, // f. having
-                null, // g. order by
-                null); // h. limit
-        if (cursor != null)
-            cursor.moveToFirst();
-        Player player = new Player();
-        player.setUsername(cursor.getString(1));
-        player.setTime(Integer.parseInt(cursor.getString(2)));
-        player.setCounter(Integer.parseInt(cursor.getString(3)));
-        // log
-        Log.i("SQLite DB : Show one  : name=  "+name, player.toString());
-
-        return player;
-    }
 
     public List<Player> showAll() {
-
         List<Player> players = new LinkedList<>();
-        String query = "SELECT  * FROM " + TABLE_NAME + " ORDER BY " + KEY_TIME + " DESC";
+        String query = "SELECT  * FROM " + TABLE_NAME + " ORDER BY " + KEY_TIME + " ASC";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Player player= null;
@@ -111,7 +89,6 @@ public class SQLDataBaseHandler extends SQLiteOpenHelper {
     }
 
     public void addOne(Player player) {
-
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -125,25 +102,4 @@ public class SQLDataBaseHandler extends SQLiteOpenHelper {
         db.close();
         Log.i("SQLite DB : Add one  : name=  "+player.getUsername(), player.toString());
     }
-
-    /*public int updateOne(Food food) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_NAME, food.getName());
-        values.put(KEY_PRICE, food.getPrice());
-        values.put(KEY_QUANTITY, food.getQuantity());
-
-        int i = db.update(TABLE_NAME, // table
-                values, // column/value
-                "id = ?", // selections
-                new String[] { String.valueOf(food.getId()) });
-
-        db.close();
-        Log.i("SQLite DB : Update one  : id=  "+food.getId(), food.toString());
-
-        return i;
-    }*/
-
 }

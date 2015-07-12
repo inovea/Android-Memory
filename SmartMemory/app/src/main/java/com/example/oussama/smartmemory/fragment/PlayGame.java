@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.oussama.smartmemory.MainActivity;
 import com.example.oussama.smartmemory.R;
 
 import java.util.Arrays;
@@ -58,6 +59,7 @@ public class PlayGame extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ((MainActivity)getActivity()).getSupportActionBar().hide();
         initGame();
         launchTimer();
     }

@@ -12,9 +12,6 @@ import com.example.oussama.smartmemory.MainActivity;
 import com.example.oussama.smartmemory.R;
 
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class MenuGame extends Fragment {
 
     private Activity activity;
@@ -31,6 +28,7 @@ public class MenuGame extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        ((MainActivity)getActivity()).getSupportActionBar().show();
         Button button = (Button) getView().findViewById(R.id.buttonPlay);
         button.setOnClickListener(new View.OnClickListener() {
             @Override

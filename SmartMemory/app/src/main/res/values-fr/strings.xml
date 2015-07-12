@@ -18,4 +18,8 @@
     <string name="delete_player_text">Voulez-vous supprimer ce joueur</string>
     <string name="yes">Oui</string>
     <string name="no">Non</string>
+    <string name="gridSize">Taille de grille</string>
+    <string name="QxQ">4x4</string>
+    <string name="TxT">3x3</string>
+    <string name="QxC">4x5</string>
 </resources>

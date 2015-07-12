@@ -18,4 +18,8 @@
     <string name="delete_player_text">Would you delete this player</string>
     <string name="yes">YES</string>
     <string name="no">NO</string>
+    <string name="gridSize">Grid size</string>
+    <string name="QxQ">4x4</string>
+    <string name="TxT">3x3</string>
+    <string name="QxC">4x5</string>
 </resources>
