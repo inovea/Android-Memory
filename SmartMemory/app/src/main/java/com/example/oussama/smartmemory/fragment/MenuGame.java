@@ -1,6 +1,7 @@
 package com.example.oussama.smartmemory.fragment;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.example.oussama.smartmemory.R;
 public class MenuGame extends Fragment {
 
     private Activity activity;
+    SharedPreferences pref;
 
     public MenuGame() {
     }
@@ -33,7 +35,16 @@ public class MenuGame extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((MainActivity) activity).startFragment(PlayGame.class, null);
+                pref = getActivity().getPreferences(0);
+                int position = pref.getInt("position", 0);
+                switch (position) {
+                    case 0:
+                        ((MainActivity) activity).startFragment(PlayGame34.class, null);
+                        break;
+                    case 1:
+                        ((MainActivity) activity).startFragment(PlayGame.class, null);
+                        break;
+                }
             }
         });
 

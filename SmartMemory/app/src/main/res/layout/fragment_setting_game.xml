@@ -26,23 +26,17 @@
         android:layout_marginTop="82dp" >
 
         <RadioButton
-            android:id="@+id/radio33"
+            android:id="@+id/radio43"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/TxT" />
+            android:text="@string/QxT"
+            android:checked="false" />
 
         <RadioButton
             android:id="@+id/radio44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/QxQ" />
-
-        <RadioButton
-            android:id="@+id/radio45"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/QxC" />
 
     </RadioGroup>
 

@@ -42,11 +42,9 @@ public class SettingGame extends Fragment {
         rg = (RadioGroup) getView().findViewById(R.id.radioGroup1);
 
         switch (position){
-            case 0 : rg.check(R.id.radio33);
+            case 0 : rg.check(R.id.radio43);
                 break;
             case 1 : rg.check(R.id.radio44);
-                break;
-            case 2 : rg.check(R.id.radio45);
                 break;
         }
 
@@ -67,9 +65,6 @@ public class SettingGame extends Fragment {
                         edt.putInt("position", position);
                         break;
                     case 1:
-                        edt.putInt("position", position);
-                        break;
-                    case 2:
                         edt.putInt("position", position);
                         break;
                     default:

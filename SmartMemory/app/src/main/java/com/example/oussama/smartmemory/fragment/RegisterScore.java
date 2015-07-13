@@ -4,6 +4,7 @@ package com.example.oussama.smartmemory.fragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
@@ -31,6 +32,7 @@ public class RegisterScore extends DialogFragment {
     EditText username;
     View v;
     private Player player;
+    SharedPreferences pref;
 
     @NonNull
     @Override
@@ -47,7 +49,16 @@ public class RegisterScore extends DialogFragment {
                 try {
                     savePlayer();
                     Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.scoreRegistered), Toast.LENGTH_SHORT).show();
-                    ((MainActivity)getActivity()).startFragment(PlayGame.class, null);
+                    pref = getActivity().getPreferences(0);
+                    int position = pref.getInt("position", 0);
+                    switch (position) {
+                        case 0:
+                            ((MainActivity) getActivity()).startFragment(PlayGame34.class, null);
+                            break;
+                        case 1:
+                            ((MainActivity) getActivity()).startFragment(PlayGame.class, null);
+                            break;
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.scoreNonRegistered), Toast.LENGTH_SHORT).show();
