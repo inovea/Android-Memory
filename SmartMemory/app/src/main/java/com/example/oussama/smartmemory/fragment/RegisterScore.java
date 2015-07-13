@@ -33,6 +33,9 @@ public class RegisterScore extends DialogFragment {
     View v;
     private Player player;
     SharedPreferences pref;
+    private final int TEMPS_MAX = 60000;
+    private final int COUPS_MAX = 30;
+    private final int SCORE_MAX = 100;
 
     @NonNull
     @Override
@@ -67,7 +70,16 @@ public class RegisterScore extends DialogFragment {
         }).setNegativeButton(getActivity().getResources().getString(R.string.skip), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                ((MainActivity)getActivity()).startFragment(PlayGame.class, null);
+                pref = getActivity().getPreferences(0);
+                int position = pref.getInt("position", 0);
+                switch (position) {
+                    case 0:
+                        ((MainActivity) getActivity()).startFragment(PlayGame34.class, null);
+                        break;
+                    case 1:
+                        ((MainActivity) getActivity()).startFragment(PlayGame.class, null);
+                        break;
+                }
             }
         });
 
@@ -77,8 +89,13 @@ public class RegisterScore extends DialogFragment {
     public void calculScore(){
         int counter = getArguments().getInt("mc_counter", 0);
         long time = getArguments().getLong("time", 0);
-        //TODO Calcul du score
-        int score = (int) (counter*time);
+
+        long p_time = time * 100 / TEMPS_MAX;
+        long p_coups = counter * 100 / COUPS_MAX;
+
+        long p_score = (p_time + p_coups) / 2;
+        long score = SCORE_MAX - (SCORE_MAX*p_score/100);
+
 
         player = new Player("", (int) time, counter, score);
 

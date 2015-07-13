@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -22,6 +23,9 @@ import java.util.List;
 public class PlayerStatistiques extends ListFragment {
 
     private List<ListViewItem> mItems;        // ListView items list
+    private final int TEMPS_MAX = 60000;
+    private final int COUPS_MAX = 30;
+    private final int SCORE_MAX = 100;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,8 +39,9 @@ public class PlayerStatistiques extends ListFragment {
         List<Player> players = ((MainActivity)getActivity()).getDb().showAll();
 
         for(Player player : players){
-            int score = 10;
-            ListViewItem item = new ListViewItem(getResources().getDrawable(R.drawable.ic_memory_back), player.getUsername(), player.getCounter(), player.getTime(), score);
+            int score = calculScore(player.getCounter(), player.getTime());
+
+            ListViewItem item = new ListViewItem(getResources().getDrawable(R.drawable.ic_memory_back), player.getUsername(), player.getCounter(), timeToString(player.getTime()), score);
             mItems.add(item);
         }
         setListAdapter(new ListViewAdapter(getActivity(), mItems));
@@ -86,6 +91,25 @@ public class PlayerStatistiques extends ListFragment {
         AlertDialog alertDialog = alertDialogBuilder.create();
         // show it
         alertDialog.show();
+    }
+
+    public int calculScore(int counter, int time){
+        long p_time = time * 100 / TEMPS_MAX;
+        long p_coups = counter * 100 / COUPS_MAX;
+
+        long p_score = (p_time + p_coups) / 2;
+        int score = (int) (SCORE_MAX - (SCORE_MAX*p_score/100));
+
+        return score;
+    }
+
+    public String timeToString(int finalTime){
+        int seconds = (int) (finalTime / 1000);
+        int minutes = seconds / 60;
+        seconds = seconds % 60;
+
+        String time = "" + minutes + ":" + String.format("%02d", seconds);
+        return time;
     }
 
 

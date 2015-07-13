@@ -10,10 +10,10 @@ public class ListViewItem {
     public final Drawable icon;
     public final String username;
     public final int counter;
-    public final int time;
+    public final String time;
     public final int score;
 
-    public ListViewItem(Drawable icon, String username, int counter, int time, int score) {
+    public ListViewItem(Drawable icon, String username, int counter, String time, int score) {
         this.icon = icon;
         this.username = username;
         this.counter = counter;

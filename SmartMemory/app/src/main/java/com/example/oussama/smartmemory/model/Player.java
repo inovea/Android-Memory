@@ -10,12 +10,12 @@ public class Player {
     String username;
     int time;
     int counter;
-    int score;
+    long score;
 
     public Player() {
     }
 
-    public Player(String username, int time, int counter, int score) {
+    public Player(String username, int time, int counter, long score) {
         this.username = username;
         this.time = time;
         this.counter = counter;
@@ -46,7 +46,7 @@ public class Player {
         this.counter = counter;
     }
 
-    public int getScore() {
+    public long getScore() {
         return score;
     }
 
