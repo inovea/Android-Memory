@@ -14,9 +14,6 @@ import android.widget.TextView;
 import com.example.oussama.smartmemory.MainActivity;
 import com.example.oussama.smartmemory.R;
 
-import java.util.Arrays;
-import java.util.Collections;
-
 public class PlayGame34 extends Fragment {
 
     private int[] id_mc = new int[12];
@@ -28,8 +25,7 @@ public class PlayGame34 extends Fragment {
     private Boolean mc_isfirst = false;
 
     private int correctcounter = 0;
-    private TextView tFeedback;
-    private Boolean b_snd_inc, b_snd_cor, b_new_game;
+    private TextView tvScore;
 
     //TIMER
     private TextView textTimer;
@@ -39,7 +35,6 @@ public class PlayGame34 extends Fragment {
     long timeSwap = 0L;
     long finalTime = 0L;
 
-    public static boolean DEBUG = false;
 
     public PlayGame34() {
     }
@@ -92,10 +87,6 @@ public class PlayGame34 extends Fragment {
 
 
     private void initGame() {
-        SharedPreferences settings = getActivity().getSharedPreferences("memoryPrefs", 0);
-        b_new_game = settings.getBoolean("new_game", true);
-
-        if (b_new_game) {
 
             mc_counter = 0;
             firstid = 0;
@@ -103,7 +94,7 @@ public class PlayGame34 extends Fragment {
             mc_isfirst = false;
             correctcounter = 0;
 
-            tFeedback = (TextView) getView().findViewById(R.id.mc_feedback);
+            tvScore = (TextView) getView().findViewById(R.id.mc_feedback);
 
             // fill arrays with resources
             id_mc[0] = R.id.mc0;
@@ -145,11 +136,6 @@ public class PlayGame34 extends Fragment {
             img_mc[11][0] = R.drawable.back6;
             img_mc[11][1] = R.drawable.ic_img6;
 
-
-            if (DEBUG == false) {
-                Collections.shuffle(Arrays.asList(img_mc));
-            }
-
             for (int i = 0; i < 12; i++) {
                 myMcs[i] = (Button) getView().findViewById(id_mc[i]);
                 myMcs[i].setBackgroundResource(img_mc[i][0]);
@@ -166,7 +152,6 @@ public class PlayGame34 extends Fragment {
                     }
                 });
             }
-        }
 
 
     }
@@ -186,9 +171,9 @@ public class PlayGame34 extends Fragment {
 
             firstid = i;
             // re enable all except this one
-            for (Button b : myMcs) {
-                if (b.getId() != firstid) {
-                    b.setEnabled(true);
+            for (int j = 0; j < 16; j++) {
+                if(i != j){
+                    myMcs[j].setEnabled(true);
                 }
             }
 
@@ -227,7 +212,7 @@ public class PlayGame34 extends Fragment {
             }
         }
 
-        tFeedback.setText(String.format("%d/%d", correctcounter, mc_counter));
+        tvScore.setText(String.format("%d/%d", correctcounter, mc_counter));
 
         if (correctcounter > 5) {
             timeSwap += timeInMillies;

@@ -29,8 +29,7 @@ public class PlayGame extends Fragment {
     private Boolean mc_isfirst = false;
 
     private int correctcounter = 0;
-    private TextView tFeedback;
-    private Boolean b_snd_inc, b_snd_cor, b_new_game;
+    private TextView tvScore;
 
     //TIMER
     private TextView textTimer;
@@ -40,7 +39,6 @@ public class PlayGame extends Fragment {
     long timeSwap = 0L;
     long finalTime = 0L;
 
-    public static boolean DEBUG = false;
 
     public PlayGame() {
     }
@@ -93,10 +91,6 @@ public class PlayGame extends Fragment {
 
 
     private void initGame() {
-        SharedPreferences settings = getActivity().getSharedPreferences("memoryPrefs", 0);
-        b_new_game = settings.getBoolean("new_game", true);
-
-        if (b_new_game) {
 
             mc_counter = 0;
             firstid = 0;
@@ -104,7 +98,7 @@ public class PlayGame extends Fragment {
             mc_isfirst = false;
             correctcounter = 0;
 
-            tFeedback = (TextView) getView().findViewById(R.id.mc_feedback);
+            tvScore = (TextView) getView().findViewById(R.id.mc_feedback);
 
             // fill arrays with resources
             id_mc[0] = R.id.mc0;
@@ -157,9 +151,9 @@ public class PlayGame extends Fragment {
             img_mc[15][0] = R.drawable.back8;
             img_mc[15][1] = R.drawable.ic_img8;
 
-            if (DEBUG == false) {
-                Collections.shuffle(Arrays.asList(img_mc));
-            }
+//            if (DEBUG == false) {
+//                Collections.shuffle(Arrays.asList(img_mc));
+//            }
 
             for (int i = 0; i < 16; i++) {
                 myMcs[i] = (Button) getView().findViewById(id_mc[i]);
@@ -177,9 +171,6 @@ public class PlayGame extends Fragment {
                     }
                 });
             }
-        }
-
-
     }
 
     private void doClickAction(View v, int i) {
@@ -197,9 +188,9 @@ public class PlayGame extends Fragment {
 
             firstid = i;
             // re enable all except this one
-            for (Button b : myMcs) {
-                if (b.getId() != firstid) {
-                    b.setEnabled(true);
+            for (int j = 0; j < 16; j++) {
+                if(i != j){
+                    myMcs[j].setEnabled(true);
                 }
             }
 
@@ -228,17 +219,20 @@ public class PlayGame extends Fragment {
         }
 
         // re-enable and turn cards back
-        for (Button b : myMcs) {
-            if (b.getVisibility() != View.INVISIBLE) {
-                b.setEnabled(true);
-                b.setBackgroundResource(R.drawable.memory_back);
+//        for (Button b : myMcs) {
+//            if (b.getVisibility() != View.INVISIBLE) {
+//                b.setEnabled(true);
+//                b.setBackgroundResource(R.drawable.memory_back);
                 for (int i = 0; i < 16; i++) {
-                    myMcs[i].setBackgroundResource(img_mc[i][0]);
+                    if (myMcs[i].getVisibility() != View.INVISIBLE) {
+                        myMcs[i].setEnabled(true);
+                        myMcs[i].setBackgroundResource(img_mc[i][0]);
+                    }
                 }
-            }
-        }
+//            }
+//        }
 
-        tFeedback.setText(String.format("%d/%d", correctcounter, mc_counter));
+        tvScore.setText(String.format("%d/%d", correctcounter, mc_counter));
 
         if (correctcounter > 7) {
             timeSwap += timeInMillies;
