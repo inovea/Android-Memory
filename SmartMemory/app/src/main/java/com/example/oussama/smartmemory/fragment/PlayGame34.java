@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.example.oussama.smartmemory.MainActivity;
 import com.example.oussama.smartmemory.R;
 
+import java.util.Random;
+
 public class PlayGame34 extends Fragment {
 
     private int[] id_mc = new int[12];
@@ -85,9 +87,13 @@ public class PlayGame34 extends Fragment {
         }
     };
 
+    public int randomNumber(){
+        Random r = new Random();
+        return r.nextInt(11 - 0) + 0;
+    }
+
 
     private void initGame() {
-
             mc_counter = 0;
             firstid = 0;
             secondid = 0;
@@ -96,7 +102,6 @@ public class PlayGame34 extends Fragment {
 
             tvScore = (TextView) getView().findViewById(R.id.mc_feedback);
 
-            // fill arrays with resources
             id_mc[0] = R.id.mc0;
             id_mc[1] = R.id.mc1;
             id_mc[2] = R.id.mc2;
@@ -161,24 +166,20 @@ public class PlayGame34 extends Fragment {
         v.setBackgroundResource(img_mc[i][1]);
         mc_isfirst = !mc_isfirst;
 
-        // disable all buttons
         for (Button b : myMcs) {
             b.setEnabled(false);
         }
 
         if (mc_isfirst) {
-            // turning the first card
 
             firstid = i;
-            // re enable all except this one
-            for (int j = 0; j < 16; j++) {
+            for (int j = 0; j < 12; j++) {
                 if(i != j){
                     myMcs[j].setEnabled(true);
                 }
             }
 
         } else {
-            // turning the second card
             secondid = i;
             doPlayMove();
         }
@@ -190,18 +191,15 @@ public class PlayGame34 extends Fragment {
         mc_counter++;
 
         if (img_mc[firstid][1] - img_mc[secondid][1] == 0) {
-            // correct
             waiting(200);
             myMcs[firstid].setVisibility(View.INVISIBLE);
             myMcs[secondid].setVisibility(View.INVISIBLE);
             correctcounter++;
 
         } else {
-            // incorrect
             waiting(400);
         }
 
-        // re-enable and turn cards back
         for (Button b : myMcs) {
             if (b.getVisibility() != View.INVISIBLE) {
                 b.setEnabled(true);

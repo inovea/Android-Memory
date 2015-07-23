@@ -100,7 +100,6 @@ public class PlayGame extends Fragment {
 
             tvScore = (TextView) getView().findViewById(R.id.mc_feedback);
 
-            // fill arrays with resources
             id_mc[0] = R.id.mc0;
             id_mc[1] = R.id.mc1;
             id_mc[2] = R.id.mc2;
@@ -151,10 +150,6 @@ public class PlayGame extends Fragment {
             img_mc[15][0] = R.drawable.back8;
             img_mc[15][1] = R.drawable.ic_img8;
 
-//            if (DEBUG == false) {
-//                Collections.shuffle(Arrays.asList(img_mc));
-//            }
-
             for (int i = 0; i < 16; i++) {
                 myMcs[i] = (Button) getView().findViewById(id_mc[i]);
                 myMcs[i].setBackgroundResource(img_mc[i][0]);
@@ -167,7 +162,6 @@ public class PlayGame extends Fragment {
                         }
 
                         doClickAction(view, i);
-
                     }
                 });
             }
@@ -178,16 +172,13 @@ public class PlayGame extends Fragment {
         v.setBackgroundResource(img_mc[i][1]);
         mc_isfirst = !mc_isfirst;
 
-        // disable all buttons
         for (Button b : myMcs) {
             b.setEnabled(false);
         }
 
         if (mc_isfirst) {
-            // turning the first card
 
             firstid = i;
-            // re enable all except this one
             for (int j = 0; j < 16; j++) {
                 if(i != j){
                     myMcs[j].setEnabled(true);
@@ -195,7 +186,6 @@ public class PlayGame extends Fragment {
             }
 
         } else {
-            // turning the second card
             secondid = i;
             doPlayMove();
         }
@@ -207,18 +197,15 @@ public class PlayGame extends Fragment {
         mc_counter++;
 
         if (img_mc[firstid][1] - img_mc[secondid][1] == 0) {
-            // correct
             waiting(200);
             myMcs[firstid].setVisibility(View.INVISIBLE);
             myMcs[secondid].setVisibility(View.INVISIBLE);
             correctcounter++;
 
         } else {
-            // incorrect
             waiting(400);
         }
 
-        // re-enable and turn cards back
 //        for (Button b : myMcs) {
 //            if (b.getVisibility() != View.INVISIBLE) {
 //                b.setEnabled(true);
